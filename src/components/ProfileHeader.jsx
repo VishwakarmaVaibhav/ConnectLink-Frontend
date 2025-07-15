@@ -245,17 +245,21 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 				</div>
 
 				{/* Buttons */}
-				<div className="w-full md:w-auto">
-				{isOwnProfile && (
-					<button
-						onClick={isEditing ? handleSave : () => setIsEditing(true)}
-						className="text-gray-500 hover:text-gray-700 transition"
-						title={isEditing ? "Save" : "Edit"}
-					>
-						{isEditing ? <Check size={18} /> : <Pencil size={18} />}
-					</button>
-				)}
+				{/* Buttons */}
+<div className="w-full md:w-auto flex justify-center md:justify-end items-center">
+	{isOwnProfile ? (
+		<button
+			onClick={isEditing ? handleSave : () => setIsEditing(true)}
+			className="text-gray-500 hover:text-gray-700 transition"
+			title={isEditing ? "Save" : "Edit"}
+		>
+			{isEditing ? <Check size={18} /> : <Pencil size={18} />}
+		</button>
+	) : (
+		renderConnectionButton()
+	)}
 </div>
+
 			</div>
 			<Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)} className="relative z-50">
   <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
