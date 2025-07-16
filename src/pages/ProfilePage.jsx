@@ -54,6 +54,22 @@ const ProfilePage = () => {
 		},
 	});
 
+	// Delete Profile Mutation
+	// Delete Profile Mutation
+const { mutate: deleteProfile } = useMutation({
+	mutationFn: async () => {
+	  await axiosInstance.delete(`/users/profile`);  // Correct API path
+	},
+	onSuccess: () => {
+	  toast.success("Profile deleted successfully.");
+	  window.location.href = "/login"; // Redirect to login
+	},
+	onError: (error) => {
+	  toast.error(error?.response?.data?.message || "Failed to delete profile.");
+	},
+  });
+  
+
 	// Loader
 	if (isAuthUserLoading || isUserProfileLoading || isPostsLoading) {
 		return (
@@ -76,12 +92,11 @@ const ProfilePage = () => {
 	const handleSave = (updatedData) => updateProfile(updatedData);
 
 	// Logout/Delete profile component
-	const ProfileActionsCard = ({ onLogout }) => {
+	const ProfileActionsCard = ({ onLogout, onDeleteProfile }) => {
 		const handleDelete = () => {
 			const confirmDelete = window.confirm("Are you sure you want to delete your profile? This action is irreversible.");
 			if (confirmDelete) {
-				// TODO: Replace with delete profile API
-				toast.error("Profile deletion is not implemented yet.");
+				onDeleteProfile(); // Call the delete mutation
 			}
 		};
 
@@ -158,7 +173,7 @@ const ProfilePage = () => {
 					{/* Mobile: Profile Actions */}
 					{isOwnProfile && (
 						<div className="lg:hidden">
-							<ProfileActionsCard onLogout={logout} />
+							<ProfileActionsCard onLogout={logout} onDeleteProfile={deleteProfile} />
 						</div>
 					)}
 				</div>
@@ -176,7 +191,7 @@ const ProfilePage = () => {
 						</div>
 
 						{/* Desktop: Profile Actions */}
-						{isOwnProfile && <ProfileActionsCard onLogout={logout} />}
+						{isOwnProfile && <ProfileActionsCard onLogout={logout} onDeleteProfile={deleteProfile} />}
 					</div>
 				</div>
 			</div>

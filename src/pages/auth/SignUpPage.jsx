@@ -1,40 +1,107 @@
-import { Link } from "react-router-dom";
-import SignUpForm from "../../components/auth/SignUpForm";
+import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { axiosInstance } from "../../lib/axios";
+import toast from "react-hot-toast";
 
-const SignUpPage = () => {
-	return (
-		<div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-tr from-blue-100 to-purple-100 px-4">
-			<div className="bg-white rounded-2xl shadow-2xl p-8 sm:p-10 w-full max-w-md animate-fade-in-up">
-				<div className="text-center mb-6">
-					<img className="mx-auto h-20 w-20" src="./small-logo.png" alt="ConnectLink" />
-					<h2 className="mt-4 text-2xl sm:text-3xl font-bold text-gray-800">
-						Make the most of your professional life
-					</h2>
-					<p className="text-sm text-gray-500 mt-1">Join ConnectLink today, it's free!</p>
-				</div>
+const SignUpForm = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
 
-				{/* Sign Up Form Component */}
-				<SignUpForm />
+  // Password validation rules
+  const validations = {
+    length: password.length >= 6,
+    uppercase: /[A-Z]/.test(password),
+    lowercase: /[a-z]/.test(password),
+    number: /[0-9]/.test(password),
+    specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+  };
 
-				<div className="mt-8">
-					<div className="relative mb-6">
-						<div className="absolute inset-0 flex items-center">
-							<div className="w-full border-t border-gray-300" />
-						</div>
-						<div className="relative flex justify-center text-sm">
-							<span className="bg-white px-2 text-gray-500">Already on ConnectLink?</span>
-						</div>
-					</div>
-					<Link
-						to="/login"
-						className="w-full inline-flex justify-center items-center py-2 px-4 border border-blue-500 text-blue-600 rounded-lg shadow-sm text-sm font-medium hover:bg-blue-50 transition-colors"
-					>
-						Sign in
-					</Link>
-				</div>
-			</div>
-		</div>
-	);
+  const allValid = Object.values(validations).every(Boolean);
+
+  const { mutate: signUpMutation } = useMutation({
+    mutationFn: (userData) => axiosInstance.post("/auth/signup", userData),
+    onSuccess: () => {
+      toast.success("Account created! Please check your email to verify.");
+      queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      setLoading(false);
+    },
+    onError: (err) => {
+      toast.error(err.response?.data?.message || "Signup failed");
+      setLoading(false);
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!allValid) {
+      toast.error("Password does not meet all requirements");
+      return;
+    }
+    setLoading(true);
+    signUpMutation({ username, email, password });
+  };
+
+  const renderValidation = (isValid, label) => (
+    <p className={`text-sm ${isValid ? "text-green-600" : "text-red-600"} flex items-center gap-1`}>
+      {isValid ? "✅" : "❌"} {label}
+    </p>
+  );
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        required
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+      />
+      <input
+        type="password"
+        placeholder="Password (6+ characters)"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        minLength={6}
+        required
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+      />
+
+      <div className="space-y-1">
+        {renderValidation(validations.length, "At least 6 characters")}
+        {renderValidation(validations.uppercase, "At least one uppercase letter")}
+        {renderValidation(validations.lowercase, "At least one lowercase letter")}
+        {renderValidation(validations.number, "At least one number")}
+        {renderValidation(validations.specialChar, "At least one special character")}
+      </div>
+
+      <button
+        type="submit"
+        disabled={loading || !allValid}
+        className={`w-full py-3 text-white font-semibold rounded-lg shadow-lg transition-colors duration-200 ${
+          loading || !allValid
+            ? "bg-blue-400 cursor-not-allowed"
+            : "bg-blue-600 hover:bg-blue-700"
+        }`}
+      >
+        {loading ? "Creating Account..." : "Sign Up"}
+      </button>
+    </form>
+  );
 };
 
-export default SignUpPage;
+export default SignUpForm;

@@ -13,7 +13,9 @@ import PostPage from "./pages/PostPage";
 import ProfilePage from "./pages/ProfilePage";
 import SearchPage from "./pages/SearchPage";
 import ErrorBoundary from "./components/ErrorBoundary"; // ✅ import this
-
+import VerifyEmailPage from "./pages/VerifyEmailPage";
+import ResetPassword from "./pages/ResetPassword";
+import ForgotPassword from "./pages/ForgotPassword";
 function App() {
 	const { data: authUser, isLoading } = useQuery({
 		queryKey: ["authUser"],
@@ -119,6 +121,9 @@ function App() {
 						)
 					}
 				/>
+				 <Route path="/verify-email" element={<VerifyEmailPage />} />
+				 <Route path="/forgot-password" element={<ForgotPassword />} />
+<Route path="/reset-password" element={<ResetPassword />} />
 				<Route
 					path="/search"
 					element={
