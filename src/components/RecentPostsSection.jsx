@@ -73,9 +73,7 @@ const RecentPostsSection = ({ posts = [], isOwnProfile = false, refetchPosts }) 
 
 								<div className="p-4 h-[220px] flex flex-col justify-between">
 									<div>
-										<h3 className="text-lg font-semibold text-blue-700 group-hover:underline">
-											{post.title || <span className="text-gray-400 italic">Untitled Post</span>}
-										</h3>
+										
 
 										{post.content && (
 											<p className="text-sm text-gray-700 mt-2 line-clamp-3">
@@ -136,9 +134,7 @@ const RecentPostsSection = ({ posts = [], isOwnProfile = false, refetchPosts }) 
 						)}
 
 						<div className="p-4">
-							<h3 className="text-lg font-semibold text-blue-700 group-hover:underline">
-								{post.title || <span className="text-gray-400 italic">Untitled Post</span>}
-							</h3>
+							
 
 							{post.content && (
 								<p className="text-sm text-gray-700 mt-2 line-clamp-3">{post.content}</p>
