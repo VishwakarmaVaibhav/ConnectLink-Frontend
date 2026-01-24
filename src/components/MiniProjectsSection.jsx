@@ -29,13 +29,13 @@ const MiniProjectsSection = ({ userData, isOwnProfile, onSave }) => {
 	if (!projects.length && !isOwnProfile) return null;
 
 	return (
-		<div className="bg-white p-4 md:p-6 rounded-xl mb-6">
+		<div className="bg-base-100 p-4 md:p-6 rounded-xl mb-6">
 			<div className="flex justify-between items-center mb-4">
-				<h2 className="text-xl font-semibold text-gray-800">Mini Projects</h2>
+				<h2 className="text-xl font-semibold text-base-content">Mini Projects</h2>
 				{isOwnProfile && (
 					<button
 						onClick={isEditing ? handleSave : () => setIsEditing(true)}
-						className="text-gray-500 hover:text-gray-700"
+						className="text-base-content/60 hover:text-base-content/80"
 						title={isEditing ? "Save Projects" : "Edit Projects"}
 					>
 						{isEditing ? <Check size={18} /> : <Pencil size={18} />}
@@ -46,7 +46,7 @@ const MiniProjectsSection = ({ userData, isOwnProfile, onSave }) => {
 			{isEditing ? (
 				<div className="space-y-6">
 					{projects.map((project, index) => (
-						<div key={index} className="bg-gray-50 p-4 rounded-md space-y-3 relative">
+						<div key={index} className="bg-base-200 p-4 rounded-md space-y-3 relative">
 							<button
 								onClick={() => handleRemoveProject(index)}
 								className="absolute top-2 right-2 text-red-500 hover:text-red-700"
@@ -58,20 +58,20 @@ const MiniProjectsSection = ({ userData, isOwnProfile, onSave }) => {
 								placeholder="Project Title"
 								value={project.title}
 								onChange={(e) => handleChange(index, "title", e.target.value)}
-								className="w-full bg-white border px-3 py-2 rounded-md focus:outline-none focus:ring focus:ring-primary/50"
+								className="w-full bg-base-100 border px-3 py-2 rounded-md focus:outline-none focus:ring focus:ring-primary/50"
 							/>
 							<textarea
 								placeholder="Project Description"
 								value={project.description}
 								onChange={(e) => handleChange(index, "description", e.target.value)}
-								className="w-full bg-white border px-3 py-2 rounded-md focus:outline-none focus:ring focus:ring-primary/50"
+								className="w-full bg-base-100 border px-3 py-2 rounded-md focus:outline-none focus:ring focus:ring-primary/50"
 							/>
 							<input
 								type="url"
 								placeholder="Project Link"
 								value={project.projectLink}
 								onChange={(e) => handleChange(index, "projectLink", e.target.value)}
-								className="w-full bg-white border px-3 py-2 rounded-md focus:outline-none focus:ring focus:ring-primary/50"
+								className="w-full bg-base-100 border px-3 py-2 rounded-md focus:outline-none focus:ring focus:ring-primary/50"
 							/>
 						</div>
 					))}
@@ -79,7 +79,7 @@ const MiniProjectsSection = ({ userData, isOwnProfile, onSave }) => {
 					<div className="flex flex-wrap gap-3">
 						<button
 							onClick={handleAddProject}
-							className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-sm px-4 py-2 rounded-md"
+							className="flex items-center gap-2 bg-base-200 hover:bg-gray-200 text-sm px-4 py-2 rounded-md"
 						>
 							<Plus size={16} />
 							Add Project
@@ -89,9 +89,9 @@ const MiniProjectsSection = ({ userData, isOwnProfile, onSave }) => {
 			) : (
 				<div className="space-y-5">
 					{projects.map((project, index) => (
-						<div key={index} className="bg-gray-50 rounded-md p-4">
-							<h3 className="text-lg font-semibold text-gray-800">{project.title}</h3>
-							<p className="text-gray-600 mt-1">{project.description}</p>
+						<div key={index} className="bg-base-200 rounded-md p-4">
+							<h3 className="text-lg font-semibold text-base-content">{project.title}</h3>
+							<p className="text-base-content/70 mt-1">{project.description}</p>
 							{project.projectLink && (
 								<a
 									href={project.projectLink}

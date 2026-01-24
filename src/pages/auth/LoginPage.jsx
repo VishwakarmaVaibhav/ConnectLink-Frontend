@@ -29,7 +29,7 @@ const LoginPage = () => {
 
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-4 py-12">
-        <div className={`bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 
+        <div className={`bg-base-100/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 
                         p-8 sm:p-12 w-full max-w-md transition-all duration-1000 transform
                         ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
           
@@ -49,7 +49,7 @@ const LoginPage = () => {
               Welcome Back
             </h1>
             
-            <p className="text-gray-600 text-base font-medium animate-fadeInUp delay-200">
+            <p className="text-base-content/70 text-base font-medium animate-fadeInUp delay-200">
               Sign in to continue your networking journey
             </p>
           </div>
@@ -63,10 +63,10 @@ const LoginPage = () => {
           <div className="mt-8 mb-6 animate-fadeInUp delay-600">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200"></div>
+                <div className="w-full border-t border-base-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="bg-white/80 px-4 text-gray-500 font-medium">New to ConnectLink?</span>
+                <span className="bg-base-100/80 px-4 text-base-content/60 font-medium">New to ConnectLink?</span>
               </div>
             </div>
           </div>
@@ -93,11 +93,11 @@ const LoginPage = () => {
           {/* Footer Links */}
           <div className="mt-8 text-center space-y-4 animate-fadeInUp delay-1000">
             <div className="flex justify-center space-x-6 text-sm">
-              <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors duration-300 font-medium">
+              <a href="#" className="text-base-content/60 hover:text-blue-600 transition-colors duration-300 font-medium">
                 Privacy Policy
               </a>
               <span className="text-gray-300">•</span>
-              <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors duration-300 font-medium">
+              <a href="#" className="text-base-content/60 hover:text-blue-600 transition-colors duration-300 font-medium">
                 Terms of Service
               </a>
             </div>

@@ -20,7 +20,7 @@ const LoginForm = () => {
     }
   }, [location]);
 
-  const { mutate: loginMutation, isLoading } = useMutation({
+  const { mutate: loginMutation, isPending: isLoading } = useMutation({
     mutationFn: (userData) => axiosInstance.post("/auth/login", userData),
     onSuccess: (data) => {
       toast.success("Logged in successfully!");
@@ -46,7 +46,7 @@ const LoginForm = () => {
         placeholder="Username or Email"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        className="w-full px-4 py-3 border border-base-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         required
       />
 
@@ -56,13 +56,13 @@ const LoginForm = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 pr-12"
+          className="w-full px-4 py-3 border border-base-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 pr-12"
           required
         />
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+          className="absolute top-1/2 right-3 -translate-y-1/2 text-base-content/60 hover:text-base-content/80"
         >
           {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
         </button>

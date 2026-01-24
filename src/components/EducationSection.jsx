@@ -33,13 +33,13 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
 	};
 
 	return (
-		<div className="bg-white rounded-xl p-4 md:p-6 mb-6">
+		<div className="bg-base-100 rounded-xl p-4 md:p-6 mb-6">
 			<div className="flex justify-between items-center mb-4">
-				<h2 className="text-xl font-semibold text-gray-800">Education</h2>
+				<h2 className="text-xl font-semibold text-base-content">Education</h2>
 				{isOwnProfile && (
 					<button
 						onClick={isEditing ? handleSave : () => setIsEditing(true)}
-						className="text-gray-500 hover:text-gray-700"
+						className="text-base-content/60 hover:text-base-content/80"
 						title={isEditing ? "Save" : "Edit"}
 					>
 						{isEditing ? <Check size={18} /> : <Pencil size={18} />}
@@ -48,17 +48,17 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
 			</div>
 
 			{educations.length === 0 && !isEditing && (
-				<p className="text-gray-500 italic">No education details added.</p>
+				<p className="text-base-content/60 italic">No education details added.</p>
 			)}
 
 			{educations.map((edu) => (
 				<div key={edu._id} className="mb-5 flex justify-between items-start">
 					<div className="flex gap-3">
-						<School size={20} className="text-gray-600 mt-1" />
+						<School size={20} className="text-base-content/70 mt-1" />
 						<div>
-							<p className="font-semibold text-gray-800">{edu.fieldOfStudy}</p>
-							<p className="text-gray-600 text-sm">{edu.school}</p>
-							<p className="text-gray-500 text-sm">
+							<p className="font-semibold text-base-content">{edu.fieldOfStudy}</p>
+							<p className="text-base-content/70 text-sm">{edu.school}</p>
+							<p className="text-base-content/60 text-sm">
 								{edu.startYear} – {edu.endYear || "Present"}
 							</p>
 						</div>
@@ -78,28 +78,28 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
 						placeholder="School"
 						value={newEducation.school}
 						onChange={(e) => setNewEducation({ ...newEducation, school: e.target.value })}
-						className="w-full px-4 py-2 rounded bg-gray-50 focus:outline-none focus:ring focus:ring-primary"
+						className="w-full px-4 py-2 rounded bg-base-200 focus:outline-none focus:ring focus:ring-primary"
 					/>
 					<input
 						type="text"
 						placeholder="Field of Study"
 						value={newEducation.fieldOfStudy}
 						onChange={(e) => setNewEducation({ ...newEducation, fieldOfStudy: e.target.value })}
-						className="w-full px-4 py-2 rounded bg-gray-50 focus:outline-none focus:ring focus:ring-primary"
+						className="w-full px-4 py-2 rounded bg-base-200 focus:outline-none focus:ring focus:ring-primary"
 					/>
 					<input
 						type="number"
 						placeholder="Start Year"
 						value={newEducation.startYear}
 						onChange={(e) => setNewEducation({ ...newEducation, startYear: e.target.value })}
-						className="w-full px-4 py-2 rounded bg-gray-50 focus:outline-none focus:ring focus:ring-primary"
+						className="w-full px-4 py-2 rounded bg-base-200 focus:outline-none focus:ring focus:ring-primary"
 					/>
 					<input
 						type="number"
 						placeholder="End Year (optional)"
 						value={newEducation.endYear}
 						onChange={(e) => setNewEducation({ ...newEducation, endYear: e.target.value })}
-						className="w-full px-4 py-2 rounded bg-gray-50 focus:outline-none focus:ring focus:ring-primary"
+						className="w-full px-4 py-2 rounded bg-base-200 focus:outline-none focus:ring focus:ring-primary"
 					/>
 
 					<button

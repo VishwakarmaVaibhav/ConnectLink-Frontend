@@ -47,13 +47,13 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 	};
 
 	return (
-		<div className="bg-white rounded-xl p-4 md:p-6 mb-6">
+		<div className="bg-base-100 rounded-xl p-4 md:p-6 mb-6">
 			<div className="flex justify-between items-center mb-4">
-				<h2 className="text-xl font-semibold text-gray-800">Experience</h2>
+				<h2 className="text-xl font-semibold text-base-content">Experience</h2>
 				{isOwnProfile && (
 					<button
 						onClick={isEditing ? handleSave : () => setIsEditing(true)}
-						className="text-gray-500 hover:text-gray-700"
+						className="text-base-content/60 hover:text-base-content/80"
 						title={isEditing ? "Save" : "Edit"}
 					>
 						{isEditing ? <Check size={18} /> : <Pencil size={18} />}
@@ -64,15 +64,15 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 			{experiences.map((exp) => (
 				<div key={exp._id} className="mb-6 flex justify-between items-start">
 					<div className="flex gap-3">
-						<Briefcase size={20} className="text-gray-600 mt-1" />
+						<Briefcase size={20} className="text-base-content/70 mt-1" />
 						<div>
-							<p className="font-semibold text-gray-800">{exp.title}</p>
-							<p className="text-gray-600 text-sm">{exp.company}</p>
-							<p className="text-gray-500 text-sm mb-1">
+							<p className="font-semibold text-base-content">{exp.title}</p>
+							<p className="text-base-content/70 text-sm">{exp.company}</p>
+							<p className="text-base-content/60 text-sm mb-1">
 								{formatDate(exp.startDate)} – {exp.endDate ? formatDate(exp.endDate) : "Present"}
 							</p>
 							{exp.description && (
-								<p className="text-gray-700 text-sm">{exp.description}</p>
+								<p className="text-base-content/80 text-sm">{exp.description}</p>
 							)}
 						</div>
 					</div>
@@ -91,20 +91,20 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 						placeholder="Title"
 						value={newExperience.title}
 						onChange={(e) => setNewExperience({ ...newExperience, title: e.target.value })}
-						className="w-full px-4 py-2 rounded bg-gray-50 focus:outline-none focus:ring focus:ring-primary"
+						className="w-full px-4 py-2 rounded bg-base-200 focus:outline-none focus:ring focus:ring-primary"
 					/>
 					<input
 						type="text"
 						placeholder="Company"
 						value={newExperience.company}
 						onChange={(e) => setNewExperience({ ...newExperience, company: e.target.value })}
-						className="w-full px-4 py-2 rounded bg-gray-50 focus:outline-none focus:ring focus:ring-primary"
+						className="w-full px-4 py-2 rounded bg-base-200 focus:outline-none focus:ring focus:ring-primary"
 					/>
 					<input
 						type="date"
 						value={newExperience.startDate}
 						onChange={(e) => setNewExperience({ ...newExperience, startDate: e.target.value })}
-						className="w-full px-4 py-2 rounded bg-gray-50 focus:outline-none focus:ring focus:ring-primary"
+						className="w-full px-4 py-2 rounded bg-base-200 focus:outline-none focus:ring focus:ring-primary"
 					/>
 
 					<div className="flex items-center gap-2">
@@ -115,7 +115,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 							onChange={handleCurrentlyWorkingChange}
 							className="accent-primary"
 						/>
-						<label htmlFor="currentlyWorking" className="text-sm text-gray-700">
+						<label htmlFor="currentlyWorking" className="text-sm text-base-content/80">
 							I currently work here
 						</label>
 					</div>
@@ -125,7 +125,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 							type="date"
 							value={newExperience.endDate}
 							onChange={(e) => setNewExperience({ ...newExperience, endDate: e.target.value })}
-							className="w-full px-4 py-2 rounded bg-gray-50 focus:outline-none focus:ring focus:ring-primary"
+							className="w-full px-4 py-2 rounded bg-base-200 focus:outline-none focus:ring focus:ring-primary"
 						/>
 					)}
 
@@ -133,7 +133,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 						placeholder="Description"
 						value={newExperience.description}
 						onChange={(e) => setNewExperience({ ...newExperience, description: e.target.value })}
-						className="w-full px-4 py-2 rounded bg-gray-50 resize-none focus:outline-none focus:ring focus:ring-primary"
+						className="w-full px-4 py-2 rounded bg-base-200 resize-none focus:outline-none focus:ring focus:ring-primary"
 					/>
 
 					<button

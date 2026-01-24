@@ -2,8 +2,23 @@ import { Link } from "react-router-dom";
 import { Home, UserPlus, Bell } from "lucide-react";
 
 export default function Sidebar({ user }) {
+	if (!user) {
+		return (
+			<div className="bg-base-100 rounded-xl shadow-lg sticky top-24 hidden lg:block overflow-hidden border border-base-300 p-4 text-center">
+				<h2 className="text-xl font-bold text-base-content mb-2">New to ConnectLink?</h2>
+				<p className="text-base-content/70 mb-4 text-sm">Sign up now to connect with alumni, students, and teachers!</p>
+				<Link to="/signup" className="block w-full bg-primary text-primary-content font-semibold py-2 rounded-full hover:bg-primary-focus transition duration-300 mb-2">
+					Sign Up
+				</Link>
+				<Link to="/login" className="block w-full border border-primary text-primary font-semibold py-2 rounded-full hover:bg-primary/10 transition duration-300">
+					Log In
+				</Link>
+			</div>
+		);
+	}
+
 	return (
-		<div className="bg-white rounded-xl shadow-lg sticky top-24 hidden lg:block overflow-hidden border border-gray-200">
+		<div className="bg-base-100 rounded-xl shadow-lg sticky top-24 hidden lg:block overflow-hidden border border-base-300">
 			{/* Banner & Profile */}
 			<div className="relative">
 				<div
@@ -24,20 +39,20 @@ export default function Sidebar({ user }) {
 			{/* User Info */}
 			<div className="pt-12 pb-4 px-4 text-center">
 				<Link to={`/profile/${user.username}`}>
-					<h2 className="text-lg font-semibold text-gray-800 hover:underline">{user.name}</h2>
+					<h2 className="text-lg font-semibold text-base-content hover:text-primary transition-colors">{user.name}</h2>
 				</Link>
-				<p className="text-sm text-gray-500 truncate">{user.headline}</p>
-				<p className="text-xs text-gray-400 mt-1">{user.connections.length} connections</p>
+				<p className="text-sm text-base-content/60 truncate">{user.headline}</p>
+				<p className="text-xs text-base-content/50 mt-1">{user.connections.length} connections</p>
 			</div>
 
 			{/* Navigation Links */}
-			<div className="border-t border-gray-100">
+			<div className="border-t border-base-300">
 				<nav className="p-4">
 					<ul className="space-y-2">
 						<li>
 							<Link
 								to="/"
-								className="flex items-center gap-3 text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+								className="flex items-center gap-3 text-base-content/80 px-3 py-2 rounded-lg hover:bg-base-200 hover:text-primary transition-colors"
 							>
 								<Home size={20} /> <span>Home</span>
 							</Link>
@@ -45,7 +60,7 @@ export default function Sidebar({ user }) {
 						<li>
 							<Link
 								to="/network"
-								className="flex items-center gap-3 text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+								className="flex items-center gap-3 text-base-content/80 px-3 py-2 rounded-lg hover:bg-base-200 hover:text-primary transition-colors"
 							>
 								<UserPlus size={20} /> <span>My Network</span>
 							</Link>
@@ -53,7 +68,7 @@ export default function Sidebar({ user }) {
 						<li>
 							<Link
 								to="/notifications"
-								className="flex items-center gap-3 text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+								className="flex items-center gap-3 text-base-content/80 px-3 py-2 rounded-lg hover:bg-base-200 hover:text-primary transition-colors"
 							>
 								<Bell size={20} /> <span>Notifications</span>
 							</Link>
@@ -63,10 +78,10 @@ export default function Sidebar({ user }) {
 			</div>
 
 			{/* Profile CTA */}
-			<div className="border-t border-gray-100 px-4 py-3 text-center">
+			<div className="border-t border-base-300 px-4 py-3 text-center">
 				<Link
 					to={`/profile/${user.username}`}
-					className="text-sm font-medium text-blue-600 hover:underline"
+					className="text-sm font-medium text-primary hover:underline"
 				>
 					Visit your profile
 				</Link>

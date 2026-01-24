@@ -23,13 +23,13 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
 	};
 
 	return (
-		<div className="p-4 md:p-6 bg-white rounded-xl">
+		<div className="p-4 md:p-6 bg-base-100 rounded-xl">
 			<div className="flex items-center justify-between mb-4">
 				<h2 className="text-xl font-semibold">Skills</h2>
 				{isOwnProfile && (
 					<button
 						onClick={isEditing ? handleSave : () => setIsEditing(true)}
-						className="text-gray-500 hover:text-gray-700 transition"
+						className="text-base-content/60 hover:text-base-content/80 transition"
 						title={isEditing ? "Save" : "Edit"}
 					>
 						{isEditing ? <Check size={18} /> : <Pencil size={18} />}
@@ -53,7 +53,7 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
 						</span>
 					))
 				) : (
-					<p className="text-gray-500 italic">No skills added yet.</p>
+					<p className="text-base-content/60 italic">No skills added yet.</p>
 				)}
 			</div>
 
@@ -64,7 +64,7 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
 						placeholder="New Skill"
 						value={newSkill}
 						onChange={(e) => setNewSkill(e.target.value)}
-						className="flex-grow px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+						className="flex-grow px-3 py-2 rounded-lg border border-base-300 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
 					/>
 					<button
 						onClick={handleAddSkill}

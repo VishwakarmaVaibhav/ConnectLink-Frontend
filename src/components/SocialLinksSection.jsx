@@ -19,13 +19,13 @@ const SocialLinksSection = ({ userData, isOwnProfile, onSave }) => {
 	};
 
 	return (
-		<div className="p-4 md:p-6 bg-white rounded-xl">
+		<div className="p-4 md:p-6 bg-base-100 rounded-xl">
 			<div className="flex justify-between items-center mb-4">
-				<h2 className="text-xl font-semibold text-gray-800">Social Links</h2>
+				<h2 className="text-xl font-semibold text-base-content">Social Links</h2>
 				{isOwnProfile && (
 					<button
 						onClick={isEditing ? handleSave : () => setIsEditing(true)}
-						className="text-gray-500 hover:text-gray-700 transition"
+						className="text-base-content/60 hover:text-base-content/80 transition"
 						title={isEditing ? "Save" : "Edit"}
 					>
 						{isEditing ? <Check size={18} /> : <Pencil size={18} />}
@@ -96,7 +96,7 @@ const SocialLinksSection = ({ userData, isOwnProfile, onSave }) => {
 						</a>
 					)}
 					{!initialLinks.github && !initialLinks.linkedin && !initialLinks.portfolio && (
-						<p className="text-gray-500 italic">No social links added yet.</p>
+						<p className="text-base-content/60 italic">No social links added yet.</p>
 					)}
 				</div>
 			)}

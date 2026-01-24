@@ -2,9 +2,9 @@ import Navbar from "./Navbar";
 
 const Layout = ({ children }) => {
 	return (
-		<div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-gray-50 to-gray-100 text-black">
+		<div className="min-h-screen flex flex-col bg-base-200 text-base-content transition-colors duration-300">
 			{/* Navbar */}
-			<header className="shadow-sm sticky top-0 z-50 bg-white">
+			<header className="shadow-sm sticky top-0 z-50 bg-base-100">
 				<Navbar />
 			</header>
 
@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
 			</main>
 
 			{/* Footer */}
-			<footer className="bg-white border-t border-gray-200 py-4 text-center text-sm text-gray-500">
+			<footer className="bg-base-100 border-t border-base-300 py-4 text-center text-sm text-base-content/60">
 				© {new Date().getFullYear()} ConnectLink. All rights reserved.
 			</footer>
 		</div>

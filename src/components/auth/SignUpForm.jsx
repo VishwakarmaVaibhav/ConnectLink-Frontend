@@ -13,7 +13,7 @@ const SignUpForm = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate: signUpMutation, isLoading } = useMutation({
+  const { mutate: signUpMutation, isPending: isLoading } = useMutation({
     mutationFn: async (data) => {
       const res = await axiosInstance.post("/auth/signup", data);
       return res.data;
@@ -56,7 +56,7 @@ const SignUpForm = () => {
         placeholder="Full name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        className="w-full px-4 py-3 border border-base-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         required
       />
       <input
@@ -64,7 +64,7 @@ const SignUpForm = () => {
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        className="w-full px-4 py-3 border border-base-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         required
       />
       <input
@@ -72,7 +72,7 @@ const SignUpForm = () => {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        className="w-full px-4 py-3 border border-base-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         required
       />
       <input
@@ -80,7 +80,7 @@ const SignUpForm = () => {
         placeholder="Password (6+ characters)"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+        className="w-full px-4 py-3 border border-base-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         required
       />
 

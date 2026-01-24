@@ -38,33 +38,33 @@ const FriendRequest = ({ request }) => {
 	}
 
 	return (
-		<div className="bg-white rounded-lg shadow p-4 flex items-center justify-between transition-all hover:shadow-md">
-			<div className="flex items-center gap-4">
-				<Link to={`/profile/${request.sender?.username}`}>
+		<div className="bg-base-100 rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 transition-all hover:shadow-md border border-base-300">
+			<div className="flex items-center gap-4 w-full md:w-auto">
+				<Link to={`/profile/${request.sender?.username}`} className="shrink-0">
 					<img
 						src={request.sender?.profilePicture || "/avatar.png"}
 						alt={request.sender?.name || "User"}
-						className="w-16 h-16 rounded-full object-cover"
+						className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm"
 					/>
 				</Link>
 
-				<div>
-					<Link to={`/profile/${request.sender?.username}`} className="font-semibold text-lg">
+				<div className="min-w-0">
+					<Link to={`/profile/${request.sender?.username}`} className="font-bold text-lg text-base-content hover:text-blue-600 transition-colors line-clamp-1">
 						{request.sender?.name}
 					</Link>
-					<p className="text-gray-600">{request.sender?.headline}</p>
+					<p className="text-base-content/70 text-sm line-clamp-1">{request.sender?.headline}</p>
 				</div>
 			</div>
 
-			<div className="space-x-2">
+			<div className="flex gap-2 w-full md:w-auto shrink-0">
 				<button
-					className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+					className="flex-1 md:flex-none bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-all shadow-sm hover:shadow active:scale-95"
 					onClick={() => acceptConnectionRequest(request._id)}
 				>
 					Accept
 				</button>
 				<button
-					className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors"
+					className="flex-1 md:flex-none bg-base-200 text-base-content/80 border border-base-300 px-6 py-2 rounded-full font-medium hover:bg-base-300 transition-all hover:border-base-300 active:scale-95"
 					onClick={() => rejectConnectionRequest(request._id)}
 				>
 					Reject

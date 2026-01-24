@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../lib/axios";
 import Post from "../components/Post";
 import { Loader } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const PostPage = () => {
   const { postId } = useParams();
@@ -43,6 +44,10 @@ const PostPage = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
+      <Helmet>
+        <title>{post?.content ? `${post.content.substring(0, 50)}... | ConnectLink` : "Post | ConnectLink"}</title>
+        <meta name="description" content={post?.content ? post.content.substring(0, 150) : "View this post on ConnectLink"} />
+      </Helmet>
       <Post post={post} authUser={authUser} />
     </div>
   );

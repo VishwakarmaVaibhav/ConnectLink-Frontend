@@ -77,18 +77,18 @@ export default function ShareModal({ postId }) {
   ];
 
   return (
-    <div className="relative bg-white rounded-2xl shadow-2xl p-6 max-w-sm mx-auto animate-scaleIn border border-gray-100">
+    <div className="relative bg-base-100 rounded-2xl shadow-2xl p-6 max-w-sm mx-auto animate-scaleIn border border-base-300">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-blue-50 rounded-lg">
             <Share2 className="text-blue-600" size={20} />
           </div>
-          <h3 className="text-lg font-semibold text-gray-800">Share Post</h3>
+          <h3 className="text-lg font-semibold text-base-content">Share Post</h3>
         </div>
         
         <button
-          className="text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-lg transition-all duration-300 transform hover:scale-110"
+          className="text-base-content/40 hover:text-base-content/70 hover:bg-base-200 p-2 rounded-lg transition-all duration-300 transform hover:scale-110"
           onClick={() => window.dispatchEvent(new CustomEvent("closeShareModal"))}
           aria-label="Close"
         >
@@ -102,7 +102,7 @@ export default function ShareModal({ postId }) {
           <button
             key={label}
             onClick={onClick}
-            className="group flex flex-col items-center p-4 rounded-xl hover:bg-gray-50 
+            className="group flex flex-col items-center p-4 rounded-xl hover:bg-base-200 
                      transition-all duration-300 transform hover:scale-105 focus:outline-none 
                      focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           >
@@ -123,7 +123,7 @@ export default function ShareModal({ postId }) {
                             transition-transform duration-700"></div>
             </div>
             
-            <span className="mt-2 text-xs font-medium text-gray-600 group-hover:text-gray-800 
+            <span className="mt-2 text-xs font-medium text-base-content/70 group-hover:text-base-content 
                            transition-colors duration-300">
               {copied && label === "Copy link" ? "Copied!" : label}
             </span>
@@ -132,11 +132,11 @@ export default function ShareModal({ postId }) {
       </div>
 
       {/* URL Preview */}
-      <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-        <p className="text-xs font-medium text-gray-600 mb-2">Share URL:</p>
+      <div className="bg-base-200 rounded-xl p-4 border border-base-300">
+        <p className="text-xs font-medium text-base-content/70 mb-2">Share URL:</p>
         <div className="flex items-center gap-2">
-          <div className="flex-1 bg-white border border-gray-200 rounded-lg px-3 py-2 overflow-hidden">
-            <p className="text-sm text-gray-700 truncate">{postUrl}</p>
+          <div className="flex-1 bg-base-100 border border-base-300 rounded-lg px-3 py-2 overflow-hidden">
+            <p className="text-sm text-base-content/80 truncate">{postUrl}</p>
           </div>
           <button
             onClick={handleCopyLink}
@@ -152,7 +152,7 @@ export default function ShareModal({ postId }) {
 
       {/* Footer */}
       <div className="mt-4 text-center">
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-base-content/60">
           Share this post with your network
         </p>
       </div>

@@ -16,7 +16,18 @@ import ErrorBoundary from "./components/ErrorBoundary"; // ✅ import this
 import VerifyEmailPage from "./pages/VerifyEmailPage";
 import ResetPassword from "./pages/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsPage from "./pages/TermsPage";
+import { useThemeStore } from "./store/useThemeStore";
+import { useEffect } from "react";
+
 function App() {
+	const { theme } = useThemeStore();
+
+	useEffect(() => {
+		document.querySelector("html").setAttribute("data-theme", theme);
+	}, [theme]);
+
 	const { data: authUser, isLoading } = useQuery({
 		queryKey: ["authUser"],
 		queryFn: async () => {
@@ -40,13 +51,9 @@ function App() {
 				<Route
 					path="/"
 					element={
-						authUser ? (
-							<ErrorBoundary>
-								<HomePage />
-							</ErrorBoundary>
-						) : (
-							<Navigate to={"/login"} />
-						)
+						<ErrorBoundary>
+							<HomePage />
+						</ErrorBoundary>
 					}
 				/>
 				<Route
@@ -100,42 +107,32 @@ function App() {
 				<Route
 					path="/post/:postId"
 					element={
-						authUser ? (
-							<ErrorBoundary>
-								<PostPage />
-							</ErrorBoundary>
-						) : (
-							<Navigate to={"/login"} />
-						)
+						<ErrorBoundary>
+							<PostPage />
+						</ErrorBoundary>
 					}
 				/>
 				<Route
 					path="/profile/:username"
 					element={
-						authUser ? (
-							<ErrorBoundary>
-								<ProfilePage />
-							</ErrorBoundary>
-						) : (
-							<Navigate to={"/login"} />
-						)
+						<ErrorBoundary>
+							<ProfilePage />
+						</ErrorBoundary>
 					}
 				/>
-				 <Route path="/verify-email" element={<VerifyEmailPage />} />
-				 <Route path="/forgot-password" element={<ForgotPassword />} />
-<Route path="/reset-password" element={<ResetPassword />} />
+				<Route path="/verify-email" element={<VerifyEmailPage />} />
+				<Route path="/forgot-password" element={<ForgotPassword />} />
+				<Route path="/reset-password" element={<ResetPassword />} />
 				<Route
 					path="/search"
 					element={
-						authUser ? (
-							<ErrorBoundary>
-								<SearchPage />
-							</ErrorBoundary>
-						) : (
-							<Navigate to={"/login"} />
-						)
+						<ErrorBoundary>
+							<SearchPage />
+						</ErrorBoundary>
 					}
 				/>
+				<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+				<Route path="/terms-conditions" element={<TermsPage />} />
 			</Routes>
 			<Toaster />
 		</Layout>

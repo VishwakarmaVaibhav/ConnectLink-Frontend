@@ -51,12 +51,12 @@ const ForgotPassword = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-blue-100 to-purple-200 px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-xl p-8 max-w-md w-full space-y-6 animate-fade-in-up"
+        className="bg-base-100 shadow-lg rounded-xl p-8 max-w-md w-full space-y-6 animate-fade-in-up"
       >
-        <h2 className="text-2xl font-semibold text-gray-800 text-center">
+        <h2 className="text-2xl font-semibold text-base-content text-center">
           Forgot Password
         </h2>
-        <p className="text-center text-gray-600">
+        <p className="text-center text-base-content/70">
           Enter your email below and we'll send you a reset link.
         </p>
 
@@ -66,7 +66,7 @@ const ForgotPassword = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          className="w-full px-4 py-3 border border-base-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
           disabled={loading || cooldown > 0}
         />
 

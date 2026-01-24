@@ -45,7 +45,7 @@ const VerifyEmail = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
       <h2 className="text-2xl font-bold text-red-600 mb-2">Verification Failed</h2>
-      <p className="text-gray-700">{error}</p>
+      <p className="text-base-content/80">{error}</p>
     </div>
   );
 };

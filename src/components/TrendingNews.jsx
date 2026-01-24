@@ -6,7 +6,7 @@ const TrendingNews = ({ articles }) => {
   return (
     <div className="space-y-6">
       {articles.map((article, index) => (
-        <div key={index} className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
+        <div key={index} className="bg-base-100 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
 
           {/* Always show image and description on all devices */}
           <div>
@@ -15,7 +15,7 @@ const TrendingNews = ({ articles }) => {
               alt={article.title}
               className="w-full h-48 object-cover rounded mb-3"
             />
-            <p className="text-sm text-gray-600 mb-3">
+            <p className="text-sm text-base-content/70 mb-3">
               {article.description ? article.description.slice(0, 100) + '...' : 'No description available.'}
             </p>
           </div>

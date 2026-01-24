@@ -149,17 +149,17 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 	};
 
 	return (
-		<div className="w-full overflow-hidden mb-6">
+		<div className="w-full overflow-hidden">
 			{/* Banner */}
-			<div className="relative h-44 sm:h-56 md:h-64 lg:h-72 w-full bg-gray-300">
+			<div className="relative h-44 sm:h-56 md:h-64 lg:h-72 w-full bg-base-300">
 				<img
 					src={editedData.bannerImg || userData.bannerImg || "/banner.png"}
 					alt="Banner"
 					className="object-cover w-full h-full"
 				/>
 				{isEditing && (
-					<label className="absolute top-3 right-3 bg-white p-2 rounded-full cursor-pointer shadow hover:bg-gray-100">
-						<Camera size={20} className="text-gray-700" />
+					<label className="absolute top-3 right-3 bg-base-100 p-2 rounded-full cursor-pointer shadow hover:bg-base-200">
+						<Camera size={20} className="text-base-content" />
 						<input
 							type="file"
 							name="bannerImg"
@@ -172,18 +172,18 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 			</div>
 
 			{/* Profile Info */}
-			<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 p-4 md:p-6 lg:px-12 bg-white">
+			<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 p-4 md:p-6 lg:px-12 bg-base-100">
 				<div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full">
 					{/* Profile Picture */}
 					<div className="relative w-28 h-28 md:w-32 md:h-32 shrink-0">
 						<img
 							src={editedData.profilePicture || userData.profilePicture || "/avatar.png"}
 							alt={userData.name}
-							className="w-full h-full rounded-full object-cover border-4 border-white"
+							className="w-full h-full rounded-full object-cover border-4 border-base-100"
 						/>
 						{isEditing && (
-							<label className="absolute bottom-0 right-0 bg-white p-1.5 rounded-full cursor-pointer shadow hover:bg-gray-100">
-								<Camera size={18} className="text-gray-700" />
+							<label className="absolute bottom-0 right-0 bg-base-100 p-1.5 rounded-full cursor-pointer shadow hover:bg-base-200">
+								<Camera size={18} className="text-base-content" />
 								<input
 									type="file"
 									name="profilePicture"
@@ -203,23 +203,23 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 									type="text"
 									value={editedData.name ?? userData.name}
 									onChange={(e) => setEditedData({ ...editedData, name: e.target.value })}
-									className="text-2xl font-bold w-full bg-transparent border-b focus:outline-none text-center md:text-left"
+									className="text-2xl font-bold w-full bg-transparent border-b border-base-content/20 focus:outline-none text-center md:text-left text-base-content"
 								/>
 								<input
 									type="text"
 									value={editedData.headline ?? userData.headline}
 									onChange={(e) => setEditedData({ ...editedData, headline: e.target.value })}
-									className="text-sm text-gray-600 w-full bg-transparent border-b focus:outline-none mt-1 text-center md:text-left"
+									className="text-sm text-base-content/60 w-full bg-transparent border-b border-base-content/20 focus:outline-none mt-1 text-center md:text-left"
 								/>
 							</>
 						) : (
 							<>
-								<h2 className="text-2xl font-semibold text-gray-800">{userData.name}</h2>
-								<p className="text-sm text-gray-600">{userData.headline}</p>
+								<h2 className="text-2xl font-semibold text-base-content">{userData.name}</h2>
+								<p className="text-sm text-base-content/60">{userData.headline}</p>
 							</>
 						)}
 
-						<div className="flex items-center justify-center md:justify-start text-gray-500 gap-1 mt-2 text-sm">
+						<div className="flex items-center justify-center md:justify-start text-base-content/50 gap-1 mt-2 text-sm">
 							<MapPin size={16} />
 							{isEditing ? (
 								<input
@@ -233,70 +233,70 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 							)}
 						</div>
 						{userData?.connections?.length > 0 && (
-  <button
-    onClick={() => setIsModalOpen(true)}
-    className="mt-3 text-sm text-blue-600 hover:underline font-medium"
-  >
-    {userData.connections.length} connections
-  </button>
-)}
+							<button
+								onClick={() => setIsModalOpen(true)}
+								className="mt-3 text-sm text-blue-600 hover:underline font-medium"
+							>
+								{userData.connections.length} connections
+							</button>
+						)}
 
 					</div>
 				</div>
 
 				{/* Buttons */}
 				{/* Buttons */}
-<div className="w-full md:w-auto flex justify-center md:justify-end items-center">
-	{isOwnProfile ? (
-		<button
-			onClick={isEditing ? handleSave : () => setIsEditing(true)}
-			className="text-gray-500 hover:text-gray-700 transition"
-			title={isEditing ? "Save" : "Edit"}
-		>
-			{isEditing ? <Check size={18} /> : <Pencil size={18} />}
-		</button>
-	) : (
-		renderConnectionButton()
-	)}
-</div>
+				<div className="w-full md:w-auto flex justify-center md:justify-end items-center">
+					{isOwnProfile ? (
+						<button
+							onClick={isEditing ? handleSave : () => setIsEditing(true)}
+							className="text-base-content/60 hover:text-base-content/80 transition"
+							title={isEditing ? "Save" : "Edit"}
+						>
+							{isEditing ? <Check size={18} /> : <Pencil size={18} />}
+						</button>
+					) : (
+						renderConnectionButton()
+					)}
+				</div>
 
 			</div>
 			<Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)} className="relative z-50">
-  <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
-  <div className="fixed inset-0 flex items-center justify-center p-4">
-    <Dialog.Panel className="w-full max-w-md bg-white rounded-lg shadow-xl p-6 space-y-4">
-      <Dialog.Title className="text-lg font-semibold text-gray-800">
-        Connections
-      </Dialog.Title>
-      <ul className="space-y-3 max-h-64 overflow-y-auto">
-        {userData.connections.map((conn) => (
-          <li
-            key={conn._id}
-            className="flex items-center gap-3 border-b pb-2 hover:bg-gray-50 rounded px-2"
-          >
-            <img
-              src={conn.profilePicture || "/avatar.png"}
-              alt={conn.name}
-              className="w-9 h-9 rounded-full object-cover"
-            />
-            <div>
-              <p className="font-medium text-gray-800">{conn.name}</p>
-              <p className="text-sm text-gray-500">@{conn.username}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <div className="flex justify-end">
-        <button
-          onClick={() => setIsModalOpen(false)}
-          className="text-sm text-blue-600 font-medium hover:underline"
-        >
-          Close
-        </button>
-      </div>
-    </Dialog.Panel>
-  </div>
-</Dialog>
+				<div className="fixed inset-0 bg-black/40" aria-hidden="true" />
+				<div className="fixed inset-0 flex items-center justify-center p-4">
+					<Dialog.Panel className="w-full max-w-md bg-base-100 rounded-lg shadow-xl p-6 space-y-4">
+						<Dialog.Title className="text-lg font-semibold text-base-content">
+							Connections
+						</Dialog.Title>
+						<ul className="space-y-3 max-h-64 overflow-y-auto">
+							{userData.connections.map((conn) => (
+								<li
+									key={conn._id}
+									className="flex items-center gap-3 border-b border-base-200 pb-2 hover:bg-base-200/50 rounded px-2"
+								>
+									<img
+										src={conn.profilePicture || "/avatar.png"}
+										alt={conn.name}
+										className="w-9 h-9 rounded-full object-cover"
+									/>
+									<div>
+										<p className="font-medium text-base-content">{conn.name}</p>
+										<p className="text-sm text-base-content/60">@{conn.username}</p>
+									</div>
+								</li>
+							))}
+						</ul>
+						<div className="flex justify-end">
+							<button
+								onClick={() => setIsModalOpen(false)}
+								className="text-sm text-blue-600 font-medium hover:underline"
+							>
+								Close
+							</button>
+						</div>
+					</Dialog.Panel>
+				</div>
+			</Dialog>
 
 		</div>
 	);

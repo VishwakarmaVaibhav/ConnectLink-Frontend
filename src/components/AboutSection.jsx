@@ -138,7 +138,7 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
 
   return (
     <>
-      <div className={`bg-white rounded-2xl shadow-sm border border-gray-100 mb-6 overflow-hidden
+      <div className={`bg-base-100 rounded-2xl shadow-sm border border-base-300 mb-6 overflow-hidden
                       transition-all duration-700 ease-out transform hover:shadow-lg hover:shadow-gray-200/50
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         
@@ -149,13 +149,13 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
               <div className="p-2 bg-blue-50 rounded-xl">
                 <User className="text-blue-600" size={20} />
               </div>
-              <h2 className="text-xl font-semibold text-gray-800">About</h2>
+              <h2 className="text-xl font-semibold text-base-content">About</h2>
             </div>
             
             {isOwnProfile && !isEditing && (
               <button
                 onClick={() => setIsEditing(true)}
-                className="flex items-center gap-2 px-3 py-2 text-gray-500 hover:text-blue-600 
+                className="flex items-center gap-2 px-3 py-2 text-base-content/60 hover:text-blue-600 
                          hover:bg-blue-50 rounded-lg transition-all duration-300 transform hover:scale-105"
               >
                 <Pencil size={16} />
@@ -177,14 +177,14 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
                   onChange={handleAboutChange}
                   onKeyDown={handleKeyDown}
                   rows="6"
-                  className="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white 
+                  className="w-full p-4 rounded-xl bg-base-200 border border-base-300 text-base-content 
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-base-100 
                            transition-all duration-300 resize-none leading-relaxed"
                   placeholder="Tell us about yourself, your interests, goals, and what makes you unique..."
                 />
                 
                 {/* Character count */}
-                <div className="absolute bottom-3 right-3 text-xs text-gray-400">
+                <div className="absolute bottom-3 right-3 text-xs text-base-content/40">
                   {about.length}/500
                 </div>
               </div>
@@ -199,7 +199,7 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
                         <Sparkles size={12} />
                         AI Suggestion (Press Tab to accept)
                       </p>
-                      <p className="text-gray-700 text-sm leading-relaxed">{currentSuggestion}</p>
+                      <p className="text-base-content/80 text-sm leading-relaxed">{currentSuggestion}</p>
                     </div>
                     <div className="flex gap-2">
                       <button
@@ -211,8 +211,8 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
                       </button>
                       <button
                         onClick={() => setShowSuggestions(false)}
-                        className="px-3 py-1 bg-gray-200 text-gray-600 text-xs rounded-lg 
-                                 hover:bg-gray-300 transition-colors"
+                        className="px-3 py-1 bg-gray-200 text-base-content/70 text-xs rounded-lg 
+                                 hover:bg-base-300 transition-colors"
                       >
                         Dismiss
                       </button>
@@ -224,15 +224,15 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
               {/* Quick suggestions for empty state */}
               {!about && (
                 <div className="space-y-3">
-                  <p className="text-sm text-gray-600 font-medium">Quick start ideas:</p>
+                  <p className="text-sm text-base-content/70 font-medium">Quick start ideas:</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {quickSuggestions.map((suggestion, index) => (
                       <button
                         key={index}
                         onClick={() => handleQuickSuggestion(suggestion)}
-                        className="text-left p-3 bg-gray-50 hover:bg-blue-50 border border-gray-200 
+                        className="text-left p-3 bg-base-200 hover:bg-blue-50 border border-base-300 
                                  hover:border-blue-300 rounded-lg transition-all duration-300 
-                                 text-sm text-gray-700 hover:text-blue-700"
+                                 text-sm text-base-content/80 hover:text-blue-700"
                       >
                         {suggestion}
                       </button>
@@ -258,7 +258,7 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
                 <div className="flex gap-3">
                   <button
                     onClick={handleCancel}
-                    className="px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 
+                    className="px-4 py-2 text-base-content/70 hover:text-base-content hover:bg-base-200 
                              rounded-lg transition-all duration-300 text-sm font-medium"
                   >
                     Cancel
@@ -278,15 +278,15 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
           ) : (
             <div className="prose prose-gray max-w-none">
               {userData.about ? (
-                <p className="text-gray-700 whitespace-pre-line leading-relaxed">
+                <p className="text-base-content/80 whitespace-pre-line leading-relaxed">
                   {userData.about}
                 </p>
               ) : (
                 <div className="text-center py-12">
-                  <div className="p-4 bg-gray-50 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <User className="text-gray-400" size={24} />
+                  <div className="p-4 bg-base-200 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <User className="text-base-content/40" size={24} />
                   </div>
-                  <p className="text-gray-500 mb-4">No information added yet.</p>
+                  <p className="text-base-content/60 mb-4">No information added yet.</p>
                   {isOwnProfile && (
                     <button
                       onClick={() => setIsEditing(true)}
@@ -309,9 +309,9 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
       {showAIModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center 
                       z-50 animate-fadeIn">
-          <div className="bg-white rounded-2xl p-6 m-4 w-full max-w-lg animate-scaleIn">
+          <div className="bg-base-100 rounded-2xl p-6 m-4 w-full max-w-lg animate-scaleIn">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
+              <h3 className="text-xl font-semibold text-base-content flex items-center gap-2">
                 <div className="p-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg">
                   <Sparkles className="text-purple-600" size={20} />
                 </div>
@@ -319,7 +319,7 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
               </h3>
               <button
                 onClick={() => setShowAIModal(false)}
-                className="text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-lg 
+                className="text-base-content/40 hover:text-base-content/70 hover:bg-base-200 p-2 rounded-lg 
                          transition-all duration-300"
               >
                 <X size={20} />
@@ -328,18 +328,18 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
             
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                <label className="block text-sm font-semibold text-base-content/80 mb-3">
                   Tell us about yourself to generate a professional about section:
                 </label>
                 <textarea
                   value={aiPrompt}
                   onChange={(e) => setAiPrompt(e.target.value)}
                   placeholder="Include your field of study, interests, skills, career goals, hobbies, achievements, or anything that makes you unique..."
-                  className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 
+                  className="w-full p-4 border border-base-300 rounded-xl focus:ring-2 
                            focus:ring-purple-500 focus:border-transparent resize-none h-32
                            transition-all duration-300"
                 />
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-xs text-base-content/60 mt-2">
                   The more details you provide, the better your AI-generated about section will be!
                 </p>
               </div>
@@ -347,8 +347,8 @@ const AboutSection = ({ userData, isOwnProfile, onSave }) => {
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowAIModal(false)}
-                  className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl 
-                           hover:bg-gray-50 transition-all duration-300 font-medium"
+                  className="flex-1 px-4 py-3 border border-base-300 text-base-content/80 rounded-xl 
+                           hover:bg-base-200 transition-all duration-300 font-medium"
                 >
                   Cancel
                 </button>
